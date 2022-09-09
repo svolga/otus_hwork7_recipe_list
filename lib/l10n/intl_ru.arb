@@ -1,0 +1,12 @@
+{
+  "@@locale": "ru",
+  "title": "Рецепты",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recipeList" : "Список рецептов",
+  "openDialog" : "Открыть диалог",
+  "selectedDate" : "Выбранная дата",
+  "minutes" : "минут"
+}

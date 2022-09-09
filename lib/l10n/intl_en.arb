@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "title": "Flutter Example App from arb",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recipeList" : "Recipe List",
+  "openDialog" : "Open Dialog",
+  "selectedDate" : "Selected date",
+  "minutes" : "minutes"
+}
+
