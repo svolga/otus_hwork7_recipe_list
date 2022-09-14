@@ -25,6 +25,7 @@ class _ApplicationState extends State<Application> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      debugShowCheckedModeBanner: false,
       supportedLocales: S.delegate.supportedLocales,
       onGenerateTitle: (context) => S.of(context).title,
       theme: ThemeData(

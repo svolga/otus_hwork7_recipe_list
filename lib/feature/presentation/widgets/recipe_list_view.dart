@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:otus_hwork7_recipe_list/common/app_colors.dart';
 
+import '../../../common/app_fonts.dart';
 import '../../../generated/l10n.dart';
-import '../../../helpers/transform/transform.dart';
 import '../../data/models/recipe.dart';
-import 'clock.dart';
-import 'shadow.dart';
 
 List<Recipe> mock = [
   Recipe(
@@ -40,7 +39,8 @@ class RecipeListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        padding: const EdgeInsets.all(8.0),
+        padding:
+            const EdgeInsets.only(left: 16, top: 50, right: 16, bottom: 16),
         itemCount: mock.length,
         itemBuilder: (context, index) => RecipeItem(item: mock[index]));
   }
@@ -62,40 +62,108 @@ class _RecipeItemState extends State<RecipeItem> {
     debugPrint('build: ${runtimeType.toString()} ${widget.item.toString()}');
     return GestureDetector(
 //      onTap: () => Navigator.pushNamed(context, '/Widget1'),
-      child: SizedBox(
-        width: 396.0,
-        height: 136.0,
-        child: Stack(
+
+        child: Column(
+      children: [
+        PhysicalModel(
+          color: AppColors.listItemBackground, //Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          elevation: 8,
+          child: SizedBox(
+            height: 136.0,
+            child: Flex(
+              mainAxisSize: MainAxisSize.max,
+              direction: Axis.horizontal,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4),
+                      bottomLeft: Radius.circular(4),
+                    ),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.asset(widget.item.photo!, fit: BoxFit.cover),
+                      ],
+                    ),
+                  ),
+                  // child:
+                  //     (child: Image.network(item.url, fit: BoxFit.)),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.item.name!,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            height: 1.0,
+                            fontSize: 22.0,
+                            fontFamily: AppFonts.fontRoboto,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            const Icon(Icons.watch_later_outlined),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: Text(
+                                "${widget.item.duration} ${S.of(context).minutes}",
+                                overflow: TextOverflow.visible,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontFamily: AppFonts.fontRoboto,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.greenColor,
+
+                                  /* letterSpacing: 0.0, */
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const Divider(
+          height: 16,
+          color: Colors.white,
+        )
+      ],
+    ));
+  }
+}
+
+/*
+PhysicalModel(
+        color: Colors.white,
+        shadowColor: Colors.red,
+        elevation: 8.0,
+        borderRadius: BorderRadius.circular(5.0),
+        child: SizedBox(
+          width: 396.0,
+          height: 136.0,
+          child: Stack(
             clipBehavior: Clip.none,
             fit: StackFit.expand,
             alignment: Alignment.center,
             children: [
-              Positioned(
-                left: 0.0,
-                top: 0.0,
-                right: 0.0,
-                bottom: 0.0,
-                width: null,
-                height: null,
-                child: LayoutBuilder(builder:
-                    (BuildContext context, BoxConstraints constraints) {
-                  final double width = constraints.maxWidth;
-
-                  final double height = constraints.maxHeight;
-
-                  return Stack(children: [
-                    TransformHelper.translate(
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        child: SizedBox(
-                          width: width,
-                          height: height,
-                          child: const Shadow(),
-                        ))
-                  ]);
-                }),
-              ), // Тень
               Positioned(
                 left: 0.0,
                 top: 0.0,
@@ -121,7 +189,8 @@ class _RecipeItemState extends State<RecipeItem> {
                           height: height,
                           child: Text(
                             widget.item.name!,
-                            overflow: TextOverflow.visible,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                               height: 1.0,
@@ -137,6 +206,7 @@ class _RecipeItemState extends State<RecipeItem> {
                   ]);
                 }),
               ), // Название блюда
+
               Positioned(
                 left: 0.0,
                 top: 0.0,
@@ -170,11 +240,12 @@ class _RecipeItemState extends State<RecipeItem> {
                   ]);
                 }),
               ), // Время приготовления
+
               Positioned(
                 left: 0.0,
                 top: 0.0,
                 right: 0.0,
-                bottom: 16.0,
+                bottom: 0.0,
                 width: null,
                 height: null,
                 child: LayoutBuilder(builder:
@@ -224,6 +295,7 @@ class _RecipeItemState extends State<RecipeItem> {
                   ]);
                 }),
               ), // Картинка слева
+
               Positioned(
                 left: 0.0,
                 top: 0.0,
@@ -252,8 +324,10 @@ class _RecipeItemState extends State<RecipeItem> {
                   ]);
                 }),
               ), // Часы
-            ]),
+
+
+            ],
+          ),
+        ),
       ),
-    );
-  }
-}
+ */

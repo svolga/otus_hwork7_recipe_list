@@ -14,6 +14,11 @@ class RecipeListScreen extends StatelessWidget {
           title: Text(S.current.recipeList),
           backgroundColor: AppColors.greyColor,
         ),
-        body: const RecipeListView());
+        body: const SafeArea(
+          top: true,
+          bottom: true,
+          right: true,
+          child: RecipeListView(),
+        ));
   }
 }
