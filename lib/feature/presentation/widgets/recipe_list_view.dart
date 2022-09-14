@@ -90,7 +90,6 @@ class _RecipeItemState extends State<RecipeItem> {
                     ),
                   ),
                   // child:
-                  //     (child: Image.network(item.url, fit: BoxFit.)),
                 ),
                 Flexible(
                   flex: 2,
@@ -126,8 +125,6 @@ class _RecipeItemState extends State<RecipeItem> {
                                   fontFamily: AppFonts.fontRoboto,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.greenColor,
-
-                                  /* letterSpacing: 0.0, */
                                 ),
                               ),
                             ),
