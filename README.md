@@ -1,6 +1,6 @@
 # otus_hwork7_recipe_list
 
-A new Flutter project.
+List of recipes.
 
 ## Getting Started
 
